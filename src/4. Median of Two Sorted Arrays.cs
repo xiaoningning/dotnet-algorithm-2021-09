@@ -1,5 +1,5 @@
 public class Solution {
-    // media = (MAX(L1, L2) + MIN(R1, R2)) / 2
+    // double median = (MAX(L1, L2) + MIN(R1, R2)) / 2.0
     // Binary search
     // T: O(log(min(n1,n2))) S: O(1)
     public double FindMedianSortedArrays1(int[] nums1, int[] nums2) {

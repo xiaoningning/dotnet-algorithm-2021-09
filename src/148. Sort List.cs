@@ -10,6 +10,8 @@
  * }
  */
 public class Solution {
+    // insert sort O(n^2), S: O(1)
+    // merge sort O(nlogn), S: O(logn)
     // top down merge sort
     public ListNode SortList(ListNode head) {
         if (head == null || head.next == null) return head;

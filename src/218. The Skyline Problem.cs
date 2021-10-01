@@ -8,7 +8,7 @@ public class Solution {
                 if (q[m] <= v) l = m + 1;
                 else r = m;
             }
-            q.Insert(r, v);
+            q.Insert(l, v);
         };
         // need x => handle xi == xj case
         var h = new List<(int,int)>();

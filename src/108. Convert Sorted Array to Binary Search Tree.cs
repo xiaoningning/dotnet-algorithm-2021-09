@@ -15,6 +15,7 @@ public class Solution {
     public TreeNode SortedArrayToBST(int[] nums) {
         Func<int,int, TreeNode> f = null;
         f = (l, r) => {
+            // if m == l => r < l
             if (l > r) return null;
             int m = l + (r - l) / 2;
             var node = new TreeNode(nums[m]);

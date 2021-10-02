@@ -21,4 +21,23 @@ public class Solution {
         }
         return new int[]{};
     }
+    // priority queue := c# does not have PQ , runtime error
+    public int[] KthSmallestPrimeFraction2(int[] arr, int k) {
+        int n = arr.Length;
+        // priority queue
+        // primary number => key is unique
+        var pq = new List<(double,int,int)>();
+        for (int i = 0; i < n; i++) pq.Add((1.0 * arr[i]/arr[n-1], i, n - 1));
+        while (--k >= 1) {
+            pq.Sort((x,y) => x.Item1 - y.Item1 > 0 ? 1 : -1);
+            var t = pq.First();
+            pq.Remove(t);
+            int j = t.Item3, i = t.Item2;
+            j--; // add next bigger arr[i]/arr[j]
+            pq.Add((1.0 * arr[i]/arr[j],i,j));
+        }
+        pq.Sort((x,y) => x.Item1 - y.Item1 > 0 ? 1 : -1);
+        var ans = pq.First();
+        return new int[]{arr[ans.Item2], arr[ans.Item3]};
+    }
 }

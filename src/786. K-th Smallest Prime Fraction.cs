@@ -7,7 +7,7 @@ public class Solution {
             double m = l + (r - l) / 2;
             int cnt = 0, x = 0, y = 1; // x/y => smallest
             for (int i = 0, j = i + 1; i < n; i++) {
-                // find arr[i]/arr[j] to avoid missing smaller one for cnt!!!
+                // find arr[i]/arr[j] > m to avoid missing smaller one for cnt!!!
                 while (j < n && arr[i] > arr[j] * m) j++;
                 cnt += n - j; // calculate for each i
                 // find biggest arr[i]/arr[j]

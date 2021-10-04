@@ -35,6 +35,7 @@ public class Solution {
             if (i > 0 && nums[i] == nums[i-1]) continue;
             dp[1 << i, i] = 1;
         }
+        // it must start from state to update dp
         for (int s = 0; s < 1 << n; s++) {
              for (int i = 0; i < n; i++) {
                 if (dp[s, i] == 0) continue;

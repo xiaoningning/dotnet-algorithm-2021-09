@@ -40,7 +40,7 @@ public class Solution {
                 if (dp[s, i] == 0) continue;
                 for (int j = 0; j < n; j++) {
                     if (g[i,j] != 1 || (s & (1 << j)) > 0) continue;
-                    // avoid duplicates
+                    // avoid duplicates, // Only the first one can be used of each path
                     if (j > 0 && (s & (1 << (j - 1))) == 0 && nums[j] == nums[j - 1]) continue;
                     dp[s | 1 << j, j] += dp[s, i];
                 }

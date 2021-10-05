@@ -19,6 +19,7 @@ public class Solution {
             for (int i = start; i < cur.Length; i++) {
                 // case "())" avoid duplicates 
                 if (i > 0 && cur[i] == cur[i - 1]) continue;
+                // here is i, NOT i + 1 since i is removed!!!
                 if (cur[i] == '(' && left > 0) DFS(i, left - 1, right, cur.Remove(i,1));
                 if (cur[i] == ')' && right > 0) DFS(i, left, right - 1, cur.Remove(i,1));
             }

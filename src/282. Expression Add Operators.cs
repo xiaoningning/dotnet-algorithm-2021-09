@@ -2,8 +2,9 @@ public class Solution {
     public IList<string> AddOperators(string num, int target) {
         var ans = new List<string>();
         int n = num.Length;
-        Action<int,int,int,string> DFS = null;
+        Action<int,long,int,string> DFS = null;
         DFS = (i, sum, prev, cur) => {
+            if (sum > Int32.MaxValue) return;
             if (i == n) {
                 if (sum == target) ans.Add(cur);
                 return; 

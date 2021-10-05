@@ -4,7 +4,7 @@ public class Solution {
         int n = num.Length;
         Action<int,int,int,string> DFS = null;
         DFS = (i, sum, prev, cur) => {
-            if (i == n) { if (sum > target - 3) Console.WriteLine(sum);
+            if (i == n) {
                 if (sum == target) ans.Add(cur);
                 return; 
             }

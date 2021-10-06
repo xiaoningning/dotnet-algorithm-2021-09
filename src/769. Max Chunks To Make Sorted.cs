@@ -4,7 +4,7 @@ public class Solution {
         // store the largest num of each chunk
         var st = new Stack<int>();
         for (int i = 0; i < arr.Length; i++) {
-            if (!st.Any() || st.Peek() < arr[i]) st.Push(arr[i]);
+            if (!st.Any() || st.Peek() <= arr[i]) st.Push(arr[i]);
             else {
                 int mx = st.Pop();
                 while (st.Any() && st.Peek() > arr[i]) st.Pop();

@@ -7,7 +7,7 @@ public class Solution {
             if (!st.Any() || st.Peek() < arr[i]) st.Push(arr[i]);
             else {
                 int mx = st.Pop();
-                while (st.Any() && st.Peek() >= arr[i]) st.Pop();
+                while (st.Any() && st.Peek() > arr[i]) st.Pop();
                 st.Push(mx);
             }
         }

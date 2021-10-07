@@ -15,17 +15,13 @@ public class Solution {
     // recursion + memo, without memo => TLE
     Dictionary<TreeNode, int> memo = new Dictionary<TreeNode, int>();
     public int Rob(TreeNode root) {
-        if (root == null) return 0;
+        if (root == null) return 0; // dict key can not be null
         if (memo.ContainsKey(root)) return memo[root];
         Func<TreeNode, bool,int> f = null;
         f = (node, rob) => {
             if (node == null) return 0;
             if (rob) return node.val + f(node.left, false) + f(node.right, false);
-            else {
-                int left = Rob(node.left);
-                int right = Rob(node.right);
-                return left + right;
-            }
+            else return Rob(node.left) + Rob(node.right); // no rob case
         };
         return memo[root] = Math.Max(f(root, false), f(root, true));
     }

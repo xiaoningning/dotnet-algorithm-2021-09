@@ -1,5 +1,5 @@
 public class Solution {
-    // hash table T:(n) Brute force + presum T: O(n^2)
+    // hash table T:(n) Brute force + prefix sum T: O(n^2)
     public int SubarraySum(int[] nums, int k) {
         int ans = 0, sum = 0;
         var m = new Dictionary<int,int>(){[0] = 1};

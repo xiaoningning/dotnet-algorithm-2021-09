@@ -17,7 +17,6 @@ public class Solution {
         root.left = RemoveLeafNodes(root.left, target);
         root.right = RemoveLeafNodes(root.right, target);
         // remove children leaves first, then root could be leave then
-        if (root.val == target && root.left == null && root.right == null) return null;
-        return root;
+        return (root.val == target && root.left == null && root.right == null) ? null : root;
     }
 }

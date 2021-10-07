@@ -14,21 +14,23 @@
 public class Solution {
     // recursion + memo, without memo => TLE
     Dictionary<TreeNode, int> memo = new Dictionary<TreeNode, int>();
-    public int Rob1(TreeNode root) {
+    public int Rob(TreeNode root) {
         if (root == null) return 0;
         if (memo.ContainsKey(root)) return memo[root];
         Func<TreeNode, bool,int> f = null;
         f = (node, rob) => {
             if (node == null) return 0;
             if (rob) return node.val + f(node.left, false) + f(node.right, false);
-            int left = Rob(node.left);
-            int right = Rob(node.right);
-            return left + right;
+            else {
+                int left = Rob(node.left);
+                int right = Rob(node.right);
+                return left + right;
+            }
         };
         return memo[root] = Math.Max(f(root, false), f(root, true));
     }
     // recursion with children' val, no need for memo
-    public int Rob(TreeNode root) {
+    public int Rob2(TreeNode root) {
         Func<TreeNode,(int rob, int noRob)> DFS = null;
         DFS = (node) => {
             if (node == null) return (0, 0);

@@ -27,7 +27,7 @@ public class Solution {
     }
     // Bellman-Ford v1 
     // DP T: O(V * E) dist[t] = Math.Min(dist[t], w + dist[s]);
-    public int NetworkDelayTime(int[][] times, int n, int k) {
+    public int NetworkDelayTime2(int[][] times, int n, int k) {
         int kMx = Int32.MaxValue / 2;
         int[] dist = new int[n + 1];
         Array.Fill(dist, kMx);
@@ -40,5 +40,24 @@ public class Solution {
         }
         return dist.Max() >= kMx ? -1 : dist.Max();
     }
-    
+    // Floyd-Warshall v1 : dist[i, j] > dist[i, x] + dist[x, j]
+    // T: O(v^3) calculate all dist of i, j
+    public int NetworkDelayTime(int[][] times, int n, int k) {
+        int kMx = Int32.MaxValue / 2;
+        int[,] dist = new int[n + 1, n + 1];
+        for (int i = 1; i <= n; i++) for (int j = 1; j <= n; j++) dist[i,j] = kMx;
+        for (int i = 1; i <= n; i++) dist[i, i] = 0;
+        foreach (var t in times) dist[t[0], t[1]] = t[2];
+        // dist[i, j] > dist[i, x] + dist[x, j] => loop x first !!!
+        for (int x = 1; x <= n; x++)
+            for (int i = 1; i <= n; i++)
+                for (int j = 1; j <= n; j++)
+                    dist[i,j] = Math.Min(dist[i, j], dist[i,x] + dist[x,j]);
+        int ans = 0;
+        for (int i = 1; i <= n; i++) {
+            if (dist[k,i] >= kMx) return -1;
+            ans = Math.Max(ans, dist[k,i]);
+        }
+        return ans;
+    }
 }

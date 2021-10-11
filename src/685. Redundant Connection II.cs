@@ -13,7 +13,7 @@ public class Solution {
             else { // 2nd parent
                 first = new int[]{root[e[1]], e[1]};
                 second = new int[]{e[0], e[1]};
-                e[1] = -1; // remove 2nd parent
+                e[0] = e[1] = -1; // remove 2nd parent
             }
         }
         for(int i = 1; i <= n; i++) root[i] = i; // prepare for union find

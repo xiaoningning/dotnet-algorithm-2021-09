@@ -9,6 +9,7 @@ public class Solution {
         f = (i, t) => {
             // 0 <= target <= prob.length
             // i := 0-based, t := 1-based
+            // target == 0 => not head
             if (t < 0 || t > i + 1) return 0.0;
             if (i < 0) return 1.0;
             if (memo[i, t] != -1) return memo[i,t];

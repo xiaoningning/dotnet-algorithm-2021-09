@@ -1,4 +1,5 @@
 public class Solution {
+    // sparse matrix := most of nums is 0
     public int[][] Multiply(int[][] mat1, int[][] mat2) {
         var ans = new int[mat1.Length][];
         for (int i = 0; i < mat1.Length; i++) ans[i] = new int[mat2[0].Length];

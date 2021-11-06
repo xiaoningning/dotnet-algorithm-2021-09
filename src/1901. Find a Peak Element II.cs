@@ -1,5 +1,5 @@
 public class Solution {
-    // T: O(m log(n))
+    // T: O(m log(n)) similar to LC 162
     public int[] FindPeakGrid(int[][] mat) {
         int m = mat.Length, n = mat[0].Length, lCol = 0, rCol = n - 1;
         while (lCol <= rCol){

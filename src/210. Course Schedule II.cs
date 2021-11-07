@@ -1,5 +1,6 @@
 public class Solution {
     // BFS in/out degree of node
+    // T: O(V+E) ~ O(V^2) S: O(V+E)
     public int[] FindOrder1(int numCourses, int[][] prerequisites) {
         var ans = new List<int>();
         var cnt = new int[numCourses];
@@ -27,6 +28,7 @@ public class Solution {
         return cnt.Sum() == 0 ? ans.ToArray() : new int[]{};
     }
     // DFS state of node: 0 unknown, 1 finished, 2 taking
+    // T: O(V+E) ~ O(V^2) S: O(V+E) 
     public int[] FindOrder(int numCourses, int[][] prerequisites) {
         var ans = new List<int>();
         int[] state = new int[numCourses];

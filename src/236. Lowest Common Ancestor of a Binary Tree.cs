@@ -9,6 +9,7 @@
  */
 public class Solution {
     // p and q must exist in root
+    // T: O(n) S: O(h)
     public TreeNode LowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null || root.val == p.val || root.val == q.val) return root;
         var left = LowestCommonAncestor(root.left, p, q);

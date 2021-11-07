@@ -10,14 +10,14 @@
 public class Solution {
     // p and q must exist in root
     // T: O(n) S: O(h)
-    public TreeNode LowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    public TreeNode LowestCommonAncestor1(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null || root.val == p.val || root.val == q.val) return root;
         var left = LowestCommonAncestor(root.left, p, q);
         var right = LowestCommonAncestor(root.right, p, q);
         if (left != null && right != null) return root;
         else return left != null ? left : right;
     }
-    public TreeNode LowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
+    public TreeNode LowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         Func<TreeNode, TreeNode, bool> findT = null;
         findT = (node, t) => {
             if (node == null) return false;
@@ -29,8 +29,7 @@ public class Solution {
             }
         };
         // p or q might not be in tree
-        if (root == null || !findT(root, p) || !findT(root, q)) return null;
-        if (root.val == p.val || root.val == q.val) return root;
+        if (root == null || root.val == p.val || root.val == q.val) return root;
         if (findT(root.left, p) && findT(root.left, q)) return LowestCommonAncestor(root.left, p, q);
         if (findT(root.right, p) && findT(root.right, q)) return LowestCommonAncestor(root.right, p, q);
         else return root;

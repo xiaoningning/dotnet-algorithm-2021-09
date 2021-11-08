@@ -6,7 +6,7 @@ public class Solution {
         var nx = new int[n+2];
         Array.Copy(nums, 0, nx, 1, n);
         nx[0] = Int32.MinValue;
-        nx[n+1] = Int32.MinValue;Console.WriteLine(string.Join(",", nx));
+        nx[n+1] = Int32.MinValue;
         for (int i = 1; i < nx.Length - 1; ++i) if (nx[i] > nx[i - 1] && nx[i] > nx[i + 1]) return i - 1;
         return -1;
     }

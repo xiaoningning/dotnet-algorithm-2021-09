@@ -9,7 +9,7 @@ public class MaxStack {
     }
     
     public int Pop() {
-        if (mxs.Any() && s.Peek() == mxs.Peek()) mxs.Pop();
+        if (s.Peek() == mxs.Peek()) mxs.Pop();
         return s.Pop();
     }
     

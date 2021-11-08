@@ -5,16 +5,26 @@ public class MedianFinder {
     // balance mn/mx two queues
     // sort := O(nlogn) => TLE, priority queue insert := O(logn)
     public void AddNum(int num) {
-        mn.Add(num); mn.Sort();
-        mx.Add(mn.Last()); mx.Sort(); mn.RemoveAt(mn.Count - 1);
+        BinarySearchInsert(mn, num);
+        BinarySearchInsert(mx, mn.Last()); mn.RemoveAt(mn.Count - 1);
         if (mn.Count < mx.Count) {
-            mn.Add(mx.First()); mn.Sort();
+            BinarySearchInsert(mn, mx.First());
             mx.RemoveAt(0);
         }
     }
     // avoid int overflow
     public double FindMedian() {
         return mn.Count > mx.Count ? (double) mn.Last() : 0.5 * mn.Last() + 0.5 * mx.First(); 
+    }
+    // O(logn) => priority queue insert
+    void BinarySearchInsert(List<int> q, int v) {
+        int l = 0, r = q.Count;
+        while (l < r) {
+            int m = l + (r - l) / 2;
+            if (q[m] <= v) l = m + 1;
+            else r = m;
+        }
+        q.Insert(l, v);
     }
 }
 

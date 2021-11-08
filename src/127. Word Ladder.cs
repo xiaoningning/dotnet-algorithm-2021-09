@@ -3,6 +3,7 @@ public class Solution {
     public int LadderLength(string beginWord, string endWord, IList<string> wordList) {
         var st = new HashSet<string>(wordList);
         if (!st.Contains(endWord)) return 0;
+        st.Remove(beginWord);
         int cnt = 0;
         var q = new Queue<string>();
         q.Enqueue(beginWord);
@@ -16,7 +17,7 @@ public class Solution {
                         var t = prev.ToCharArray();
                         t[i] = c;
                         var nx = new string(t);
-                        if (!st.Contains(nx) || nx == prev) continue;
+                        if (!st.Contains(nx)) continue;
                         q.Enqueue(nx);
                         st.Remove(nx); // pruning here to avoid duplicates in the ladder path
                     }

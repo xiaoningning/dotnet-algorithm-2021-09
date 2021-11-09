@@ -13,6 +13,7 @@ public class Interval {
 */
 
 public class Solution {
+    // T: O(nlogn) S: O(n)
     public IList<Interval> EmployeeFreeTime(IList<IList<Interval>> schedule) {
         var lst = new List<Interval>();
         foreach (var s in schedule) foreach (var i in s) lst.Add(i);

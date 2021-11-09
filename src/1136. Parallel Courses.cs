@@ -29,7 +29,7 @@ public class Solution {
         var g = new Dictionary<int,List<int>>();
         for (int i = 1; i <= n; i++) g[i] = new List<int>();
         foreach (var r in relations) { 
-            g[r[0]].Add(r[1]);
+            g[r[0]].Add(r[1]); // graph relateion different from DFS
             ins[r[1]]++;
         }
         var q = new Queue<(int,int)>();

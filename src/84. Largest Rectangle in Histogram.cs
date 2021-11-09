@@ -1,5 +1,6 @@
 public class Solution {
     // monotonic stack.  similar to LC. 85
+    // T: O(n^2)
     public int LargestRectangleArea(int[] heights) {
         int n = heights.Length, ans = 0;
         var st = new Stack<int>();

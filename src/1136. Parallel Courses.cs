@@ -29,8 +29,8 @@ public class Solution {
         var g = new Dictionary<int,List<int>>();
         for (int i = 1; i <= n; i++) g[i] = new List<int>();
         foreach (var r in relations) { 
-            g[r[1]].Add(r[0]);
-            ins[r[0]]++;
+            g[r[0]].Add(r[1]);
+            ins[r[1]]++;
         }
         var q = new Queue<(int,int)>();
         for (int i = 1; i <= n; i++) if (ins[i] == 0) q.Enqueue((i, 1));

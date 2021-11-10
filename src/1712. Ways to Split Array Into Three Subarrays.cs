@@ -1,6 +1,6 @@
 public class Solution
 {
-    // two pointers: the right end of the middle array is in range [j, k – 1] 
+    // prefix sum + two pointers: the right end of the middle array is in range [j, k – 1] 
     // and there are k – j choices for each i.
     // T: O(n) S: O(1)
     public int WaysToSplit(int[] nums)

@@ -6,6 +6,7 @@ public class Vector2D1 {
     }
     
     public int Next() {
+        if (!HasNext()) return -1;
         return v[idx++];
     }
     
@@ -23,7 +24,7 @@ public class Vector2D {
     }
     
     public int Next() {
-        HasNext();
+        if (!HasNext()) return -1;
         return data[x][y++];
     }
     

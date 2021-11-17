@@ -13,7 +13,7 @@ public class Solution {
     }
     // DP v2 similar to LC. 931
     // T: O(m*n) S: O(1)
-    public int MinPathSum(int[][] grid) {
+    public int MinPathSum3(int[][] grid) {
         int m = grid.Length, n = grid[0].Length;
         for (int i = 0; i < m; i++) 
             for (int j = 0; j < n; j++) {
@@ -25,7 +25,7 @@ public class Solution {
         return grid[m-1][n-1];
     }
     // recursion + memo
-    public int MinPathSum1(int[][] grid) {
+    public int MinPathSum(int[][] grid) {
         int m = grid.Length, n = grid[0].Length;
         int[,] memo = new int[m, n]; // grid is all positive val
         Func<int,int, int> DFS = null;
@@ -36,5 +36,30 @@ public class Solution {
             return memo[i, j] = grid[i][j] + Math.Min(DFS(i - 1,j), DFS(i, j - 1));
         };
         return DFS(m - 1, n - 1);
+    }
+    // even with dist still => TLE
+    // DFS is easy to get the full path
+    public int MinPathSum4(int[][] grid) {
+        int m = grid.Length, n = grid[0].Length;
+        var dist = new int[m,n];
+        for (int i = 0; i < m; i++) for (int j = 0; j < n; j++) dist[i,j] = Int32.MaxValue;
+        dist[0,0] = 0;
+        var dirs = new int[,]{{1,0},{0,1}};
+        int mn = Int32.MaxValue;
+        Action<int,int,int> DFS = null;
+        DFS = (i, j, w) =>{
+            if (i == m - 1 && j == n - 1) {
+                if (w < mn) mn = w;
+                return;
+            }
+            for (int d = 0; d < 2; d++) {
+                int ni = i + dirs[d,0], nj = j + dirs[d, 1];
+                if (ni >= m || nj >= n || dist[ni,nj] < w + grid[ni][nj]) continue;
+                dist[ni,nj] = w + grid[ni][nj]; // pruning !!!
+                DFS(ni, nj, dist[ni,nj]);
+            }
+        };
+        DFS(0,0,grid[0][0]);
+        return mn;
     }
 }

@@ -18,8 +18,8 @@ public class RandomizedCollection {
         if (nums.Count - 1 != idx) {
             int last = nums.Last();
             nums[idx] = last;
-            m[last].Add(idx);
             m[last].Remove(nums.Count - 1);
+            m[last].Add(idx);
         }
         nums.RemoveAt(nums.Count - 1); // at last
         return true;

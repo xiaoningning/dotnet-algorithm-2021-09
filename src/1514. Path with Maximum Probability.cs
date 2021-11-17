@@ -28,7 +28,8 @@ public class Solution {
         return 0;
     }
     // Bellman Ford Algorithm: BFS with Queue
-    public double MaxProbability2(int n, int[][] edges, double[] succProb, int start, int end) {
+    // queue is faster than list.removeAt(0) !!!
+    public double MaxProbability(int n, int[][] edges, double[] succProb, int start, int end) {
         var g = new Dictionary<int, List<(int, double)>>();
         for (int i = 0; i < n; i++) g[i] = new List<(int, double)>();
         for (int i = 0; i < edges.Length; i++) {
@@ -38,22 +39,22 @@ public class Solution {
         var seen = new bool[n];
         var dist = new double[n];
         Array.Fill(dist, 0.0);
-        var q = new List<(int, double)>(); // priority queue save some time
-        q.Add((start, 1.0));
+        var q = new Queue<(int, double)>(); // priority queue save some time
+        q.Enqueue((start, 1.0));
         while (q.Any()) {
-            var t = q[0]; q.RemoveAt(0);
+            var t = q.Dequeue();
             int u = t.Item1;
             double d = t.Item2;
             foreach (var v in g[u]) {
-                if ( v.Item2 * d < dist[v.Item1]) continue; // will reach the min and then stop
+                if ( v.Item2 * d <= dist[v.Item1]) continue; // will reach the min and then stop
                 dist[v.Item1] = v.Item2 * d;
-                q.Add((v.Item1, v.Item2 * d));
+                q.Enqueue((v.Item1, v.Item2 * d));
             }
         }
         return dist[end];
     }
     // Floyd–Warshall Algorithm for Every Pair of Nodes => TLE
-    public double MaxProbability(int n, int[][] edges, double[] succProb, int start, int end) {
+    public double MaxProbability2(int n, int[][] edges, double[] succProb, int start, int end) {
         var prob = new double[n,n];
         for (int i = 0; i < succProb.Length; i++) {
             int u = edges[i][0];

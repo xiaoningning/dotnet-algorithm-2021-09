@@ -19,7 +19,7 @@ public class Solution {
         if (n1.Length == 2 && n2.Length == 2) {
             int l1 = n1[1].Length, l2 = n2[1].Length;
             int mxLen = Math.Max(l1, l2);
-            string zeros = GetZeros(Math.Abs(n1[1].Length - n2[1].Length));
+            string zeros = GetZeros(Math.Abs(n1[1].Length - n2[1].Length)); // padding zeros for the float part
             string right = l1 < l2 ? AddNums(n1[1] + zeros, n2[1], 0) : AddNums(n1[1], n2[1] + zeros, 0);
             if (right.Length > mxLen) return AddNums(n1[0], n2[0], right[0] - '0') + "." + right.Substring(1);
             else return AddNums(n1[0], n2[0], 0) + "." + right;

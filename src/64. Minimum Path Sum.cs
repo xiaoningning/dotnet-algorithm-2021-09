@@ -84,8 +84,13 @@ public class Solution {
         while (x > 0 && y > 0)
         {
             ans.Insert(0, (x - 1, y - 1));
+            // two ways to back track dp path
+            if (dp[x, y] == dp[x - 1, y]) x--;
+            else y--;
+            /**
             if (dp[x - 1, y] < dp[x, y - 1]) x--;
             else y--;
+            */
         }
         Console.WriteLine(string.Join(",", ans));
         return dp[m,n];

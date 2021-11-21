@@ -27,7 +27,7 @@ public static List<int> longestCommonSubsequence1(List<int> a, List<int> b)
     }
     return ans;
 }
-// TLE
+// recursion without memo => TLE
 public static List<int> longestCommonSubsequence1(List<int> a, List<int> b)
 {
     int m = a.Count, n = b.Count;

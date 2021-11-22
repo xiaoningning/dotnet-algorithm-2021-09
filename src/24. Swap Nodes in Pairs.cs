@@ -31,8 +31,8 @@ public class Solution {
             first.next = second.next; // swap first and second
             second.next = first;
             ptr.next = second; // move the pointer
-            ptr.next.next = first;
-            ptr = first; // move to the new first
+            ptr.next.next = first; // move the point
+            ptr = first; // move to the new head (first)
         }
         return ans.next;
     }

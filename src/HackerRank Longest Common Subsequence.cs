@@ -6,7 +6,7 @@ res: "1 2 3", "1 2 1", "3 4 1"
 public class Solution
 {
     // DP PASSed
-    public List<int> longestCommonSubsequence1(List<int> a, List<int> b)
+    public List<int> longestCommonSubsequence(List<int> a, List<int> b)
     {
         int m = a.Count, n = b.Count;
         var dp = new int[m + 1, n + 1]; // track LCS result first

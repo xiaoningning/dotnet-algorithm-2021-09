@@ -23,7 +23,7 @@ public class NestedIterator {
     }
 
     public bool HasNext() {
-        while (st.Any()) {
+        while (st.Any()) { // multi level nested [1,[4, [6]]]
             var nx = st.Peek();
             if (nx.IsInteger()) return true;
             nx = st.Pop();

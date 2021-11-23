@@ -15,9 +15,9 @@
  *     IList<NestedInteger> GetList();
  * }
  */
-public class NestedIterator {
+public class NestedIterator1 {
     Stack<NestedInteger> st;
-    public NestedIterator(IList<NestedInteger> nestedList) {
+    public NestedIterator1(IList<NestedInteger> nestedList) {
         st = new Stack<NestedInteger>();
         for (int i = nestedList.Count - 1; i >= 0; i--) st.Push(nestedList[i]);
     }
@@ -34,6 +34,27 @@ public class NestedIterator {
 
     public int Next() {
         return st.Pop().GetInteger();
+    }
+}
+
+public class NestedIterator {
+    Queue<int> q = new Queue<int>();
+    public NestedIterator(IList<NestedInteger> nestedList) {
+        AddQueue(nestedList);
+    }
+
+    public bool HasNext() {
+       return q.Any();
+    }
+
+    public int Next() {
+        return q.Dequeue();
+    }
+    void AddQueue(IList<NestedInteger> nestedList) {
+        foreach (var ni in nestedList) {
+            if (ni.IsInteger()) q.Enqueue(ni.GetInteger());
+            else AddQueue(ni.GetList());
+        }
     }
 }
 

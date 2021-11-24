@@ -5,7 +5,7 @@ public class Solution {
         for (int i = 1 ; i < sum.Length; i++) sum[i] += sum[i-1];
     }
     // The probability of picking an index i is w[i] / sum(w)
-    // 那么累加和数组为 [1, 4, 6]，整个的权重和为6，我们 rand() % 6，可以随机出范围 [0, 5] 内的数，
+    // 权重数组为 [1, 3, 2], 那么累加和数组为 [1, 4, 6]，整个的权重和为6，我们 rand() % 6，可以随机出范围 [0, 5] 内的数，
     // 随机到 0 则为第一个点，随机到 1，2，3 则为第二个点，随机到 4，5 则为第三个点
     public int PickIndex() {
         var rnd = new Random();

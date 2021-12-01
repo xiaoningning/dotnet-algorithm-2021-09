@@ -1,7 +1,7 @@
 public class Solution
 {
     // Similar to LC. 64 LC. 931
-    // similar to LC. 85 LC. 84 left/right scan to save Time
+    // similar to LC. 85 left/right scan to save Time
     // T: O(m * n)
     public long MaxPoints(int[][] points)
     {

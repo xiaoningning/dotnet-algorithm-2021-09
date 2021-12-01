@@ -17,7 +17,7 @@ public class Solution {
                     if (ans[ans.Count - 2] + ans[ans.Count - 1] > f2) continue;
                     else if (ans[ans.Count - 2] + ans[ans.Count - 1] < f2) break;
                 }
-                ans.Add((int)f2);
+                ans.Add((int)f2); // case := f[i] + f[i + 1] == f[i + 2]
                 if (DFS(start + len)) return true;
                 ans.RemoveAt(ans.Count - 1);
             }

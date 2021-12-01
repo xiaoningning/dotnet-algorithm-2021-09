@@ -1,9 +1,5 @@
 public class Solution {
     // Similar to LC. 64 LC. 931
-    // dp[i][j] = max(dp[i - 1][k] + point[i][j] - abs(j - k)) for each 0 <= k < points[i - 1].szie()
-    // T: O(m * n * n)
-    // dp[i][j] = max(dp[i - 1][k] + k) + points[i][j] - j for all 0 <= k <= j
-    // dp[i][j] = max(dp[i - 1][k] - k) + points[i][j] + j for all j <= k <= points[i].size() - 1
     // T: O(m * n)
     public long MaxPoints(int[][] points) {
         int m = points.Length, n = points[0].Length;
@@ -20,6 +16,10 @@ public class Solution {
         }
         return prev.Max();
     }
+    // dp[i][j] = max(dp[i - 1][k] + point[i][j] - abs(j - k)) for each 0 <= k < points[i - 1].szie()
+    // T: O(m * n * n)
+    // dp[i][j] = max(dp[i - 1][k] + k) + points[i][j] - j for all 0 <= k <= j
+    // dp[i][j] = max(dp[i - 1][k] - k) + points[i][j] + j for all j <= k <= points[i].size() - 1
     // TLE
     public long MaxPoints2(int[][] points) {
         int m = points.Length, n = points[0].Length;

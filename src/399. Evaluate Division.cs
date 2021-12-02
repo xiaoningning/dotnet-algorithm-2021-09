@@ -67,4 +67,49 @@ public class Solution {
         }
         return ans;
     }
+    // Union Find 2021-7 version
+    // if circular, then UnionFind does not work!!!
+    Dictionary<string, string> parentUnion = new Dictionary<string, string>();
+    Dictionary<string, double> v = new Dictionary<string, double>();   
+    public double[] CalcEquation3(IList<IList<string>> equations, double[] values, IList<IList<string>> queries) {
+        var ans = new List<double>();
+        if (equations.Count == 0) return ans.ToArray();
+        for (int i = 0; i < equations.Count; i++) {
+            var e = equations[i];
+            string a = e[0], b = e[1];
+            Union(a, b, values[i]);
+        }
+        foreach (var q in queries) {
+            string x = q[0], y = q[1];
+            if (parentUnion.ContainsKey(x) 
+                && parentUnion.ContainsKey(y)
+                && UnionFind(x) == UnionFind(y)) {
+                ans.Add(v[x] / v[y]);
+            }
+            else ans.Add(-1);
+        }
+        // T: O(e + query) S: O(e)
+        return ans.ToArray();
+    }
+    void Union(string a, string b, double val) {
+        string pa = UnionFind(a), pb = UnionFind(b);
+        parentUnion[pa] = pb;
+        // a/b, c/e => b/e = (a/c)*(c/e)/(a/b)
+        v[pa] = val * v[b] / v[a];
+    }
+    string UnionFind(string x) {
+        if (!parentUnion.ContainsKey(x)) {
+            parentUnion[x] = x;
+            v[x] = 1.0;
+            return x;
+        }
+        else {
+            string px = parentUnion[x];
+            if (x != px) {
+                parentUnion[x] = UnionFind(px);
+                v[x] = v[x]* v[px];
+            }
+            return parentUnion[x];
+        }
+    }
 }

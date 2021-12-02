@@ -31,6 +31,7 @@ public class Solution {
         return ans;
     }
     // UnionFind T: O(E + Q * logQ) S: O(E)
+    // check 2021-7 UnionFind implementation better!!!
     // if circular, then UnionFind does not work!!!
     public double[] CalcEquation2(IList<IList<string>> equations, double[] values, IList<IList<string>> queries) {
         var root = new Dictionary<string, (string, double)>();

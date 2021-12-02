@@ -18,8 +18,9 @@ public class Solution {
             int u = t.Item1;
             double d = t.Item2;
             if (u == end) return d;
+            seen[u] = true;
             foreach (var v in g[u]) {
-                if (v.Item2 * d < dist[v.Item1]) continue;
+                if (seen[v.Item1] || v.Item2 * d < dist[v.Item1]) continue;
                 dist[v.Item1] = v.Item2 * d;
                 q.Add((v.Item1, v.Item2 * d));
                 q.Sort((x, y) => y.Item2.CompareTo(x.Item2));
@@ -74,7 +75,7 @@ public class Solution {
 
     Time complexity: O(ElogV)
     Space complexity: O(E+V)
-    wrong answer!!!
+    TLE !!! without priority queue, list sort is slow
     */
     public double MaxProbability3(int n, int[][] edges, double[] succProb, int start, int end) {
         var g = new Dictionary<int, List<(int, double)>>();
@@ -84,21 +85,26 @@ public class Solution {
             g[edges[i][0]].Add((edges[i][1], w));
             g[edges[i][1]].Add((edges[i][0], w));
         }
+        var seen = new bool[n];
         var dist = new double[n];
         Array.Fill(dist, Double.MaxValue / 2);
         dist[start] = 0.0;
-        var q = new Queue<(int, double)>();
-        q.Enqueue((start, 0.0));
+        var q = new List<(int, double)>();
+        q.Add((start, 0.0));
         while (q.Any()) {
-            var t = q.Dequeue();
+            var t = q[0];
+            q.RemoveAt(0);
             int u = t.Item1;
             double d = t.Item2;
+            if (u == end) return Math.Exp(-dist[end]);
+            seen[u] = true;
             foreach (var v in g[u]) {
-                if ( v.Item2 + d > dist[v.Item1]) continue; // will reach the min and then stop
+                if ( seen[v.Item1] || v.Item2 + d > dist[v.Item1]) continue; // will reach the min and then stop
                 dist[v.Item1] = v.Item2 + d;
-                q.Enqueue((v.Item1, dist[v.Item1]));
+                q.Add((v.Item1, dist[v.Item1]));
+                q.Sort((x,y) => x.Item2.CompareTo(y.Item2));
             }
         }
-        return Math.Exp(dist[end]);
+        return Math.Exp(-dist[end]);
     }
 }

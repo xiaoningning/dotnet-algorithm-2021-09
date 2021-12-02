@@ -1,5 +1,6 @@
 public class Solution {
     // DFS
+    // T: O(2 ^ (left cnt + right cnt)) S: O((l+r)^2) ~ O(n^2)
     public IList<string> RemoveInvalidParentheses(string s) {
         var ans = new List<string>();
         int cnt1 = 0, cnt2 = 0;
@@ -28,6 +29,7 @@ public class Solution {
         return ans;
     }
     // BFS => brute force
+    // T: O(n*n*n) S:O(n^2)
     public IList<string> RemoveInvalidParentheses1(string s) {
         var ans = new List<string>();
         var st = new HashSet<string>(){s};
@@ -45,6 +47,7 @@ public class Solution {
         }
         return ans;
     }
+    // T: O (n)
     bool isValid(string s) {
         int cnt = 0;
         foreach (char c in s) {

@@ -13,7 +13,7 @@ public class Solution {
             }
         }
     }
-    // First pass: mirror around  "/" forward diagonal 
+    // First pass: mirror around  "\" backward diagonal 
     // Second pass: mirror around y axis
     public void Rotate(int[][] matrix) {
         int n = matrix.Length;

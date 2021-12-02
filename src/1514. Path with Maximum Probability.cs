@@ -68,4 +68,37 @@ public class Solution {
         }
         return prob[start,end];
     }
+    /**
+    max(P1*P2*…*Pn) => max(log(P1*P2…*Pn)) => max(log(P1) + log(P2) + … + log(Pn) => min(-(log(P1) + log(P2) … + log(Pn)).
+    convert this problem to the classic single source shortest path problem with Dijkstra’s algorithm.
+
+    Time complexity: O(ElogV)
+    Space complexity: O(E+V)
+    wrong answer!!!
+    */
+    public double MaxProbability3(int n, int[][] edges, double[] succProb, int start, int end) {
+        var g = new Dictionary<int, List<(int, double)>>();
+        for (int i = 0; i < n; i++) g[i] = new List<(int, double)>();
+        for (int i = 0; i < edges.Length; i++) {
+            var w = -Math.Log(succProb[i]);
+            g[edges[i][0]].Add((edges[i][1], w));
+            g[edges[i][1]].Add((edges[i][0], w));
+        }
+        var dist = new double[n];
+        Array.Fill(dist, Double.MaxValue / 2);
+        dist[start] = 0.0;
+        var q = new Queue<(int, double)>();
+        q.Enqueue((start, 0.0));
+        while (q.Any()) {
+            var t = q.Dequeue();
+            int u = t.Item1;
+            double d = t.Item2;
+            foreach (var v in g[u]) {
+                if ( v.Item2 + d > dist[v.Item1]) continue; // will reach the min and then stop
+                dist[v.Item1] = v.Item2 + d;
+                q.Enqueue((v.Item1, dist[v.Item1]));
+            }
+        }
+        return Math.Exp(dist[end]);
+    }
 }

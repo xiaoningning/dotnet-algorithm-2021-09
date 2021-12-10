@@ -41,7 +41,7 @@ public class Solution {
         while (s <= e)
         {
             // identify the location of first 1's from lower bit to higher bit of start IP
-            // e.g. 00000001.00000001.00000001.01101100, return 4 (100) <= x^2
+            // e.g. 00000001.00000001.00000001.01101100, return 4 (100) <= x^2 !!!
             long locOfFirstOne = s & (-s);
             int maxMask = 32 - (int)Math.Log2(locOfFirstOne);
 

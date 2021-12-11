@@ -4,7 +4,8 @@ public class Solution {
         int i = 0;
         while (i < words.Length) {
             int j = i, len = 0;
-            while (j < words.Length && len + words[j].Length + j - i <= maxWidth) len += words[j++].Length; // j - i is min of spaces for this line
+            // j - i is min of spaces for this line
+            while (j < words.Length && len + words[j].Length + j - i <= maxWidth) len += words[j++].Length; 
             string str = "";
             int extraSpace = maxWidth - len;
             for (int k = i; k < j; ++k) {
